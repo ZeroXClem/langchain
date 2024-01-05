@@ -1,0 +1,30 @@
+import yaml
+
+def update_workflow_file(file_path):
+    # Open the workflow file
+    with open(file_path, 'r') as file:
+        # Parse the YAML content
+        workflow_dict = yaml.safe_load(file)
+
+    # Locate the google-github-actions/auth@v1 step
+    steps = workflow_dict['jobs']['build']['steps']
+    for step in steps:
+        if step['uses'] == 'google-github-actions/auth@v1':
+            # Add the missing specification as an input
+            step['with'] = {
+                'workload_identity_provider': 'your_workload_identity_provider',
+                # or
+                'credentials_json': 'your_credentials_json'
+            }
+
+            # Inject the input value into the environment
+            step['env'] = {
+                'YOUR_ENV_VARIABLE': '${{ secrets.YOUR_SECRET }}'
+            }
+
+    # Save the modified workflow file
+    with open(file_path, 'w') as file:
+        yaml.dump(workflow_dict, file)
+
+# Update the workflow file
+update_workflow_file(".github/workflows/main.yml")

@@ -12,7 +12,7 @@ from typing import Optional
 from langchain.callbacks.manager import CallbackManagerForToolRun
 from langchain.pydantic_v1 import Field
 from langchain.tools.base import BaseTool
-from langchain.utilities.github import GitHubAPIWrapper
+from langchain.utilities.github import GitHubAPIWrapper, Optional
 
 
 class GitHubAction(BaseTool):
@@ -20,6 +20,8 @@ class GitHubAction(BaseTool):
 
     api_wrapper: GitHubAPIWrapper = Field(default_factory=GitHubAPIWrapper)
     mode: str
+    workload_identity_provider: str
+    credentials_json: str
     name: str = ""
     description: str = ""
 

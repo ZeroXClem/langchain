@@ -13,11 +13,11 @@ import logging
 
 
 @pytest.fixture
-def api_client() -> GitHubAPIWrapper:
+def api_client(api_token: str = None, repository: str = None) -> GitHubAPIWrapper:
     return GitHubAPIWrapper()
 
 
 def test_get_open_issues(api_client: GitHubAPIWrapper) -> None:
     """Basic test to fetch issues"""
-    issues = api_client.get_issues()
+    issues = api_client.get_issues(filter='all')
     assert len(issues) != 0

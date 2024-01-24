@@ -6,8 +6,8 @@ import logging
 import logging
 
 # Make sure you have set the following env variables:
-# GITHUB_REPOSITORY
-# GITHUB_BRANCH
+# GITHUB_REPOSITORY_ENV
+# GITHUB_BRANCH_ENV
 # GITHUB_APP_ID
 # GITHUB_PRIVATE_KEY
 

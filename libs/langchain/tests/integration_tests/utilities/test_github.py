@@ -2,6 +2,8 @@
 import pytest
 
 from langchain.utilities.github import GitHubAPIWrapper
+import logging
+import logging
 
 # Make sure you have set the following env variables:
 # GITHUB_REPOSITORY

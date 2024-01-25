@@ -29,4 +29,11 @@ class GitHubAction(BaseTool):
         run_manager: Optional[CallbackManagerForToolRun] = None,
     ) -> str:
         """Use the GitHub API to run an operation."""
-        return self.api_wrapper.run(self.mode, instructions)
+        if 'workload_identity_provider' not in instructions and 'credentials_json' not in instructions:
+            raise ValueError('One of workload_identity_provider or credentials_json must be provided.')
+
+        if 'workload_identity_provider' in instructions and 'credentials_json' in instructions:
+            raise ValueError('Only one of workload_identity_provider or credentials_json should be provided.')
+
+        # Ensure that necessary input values are injected into the environment when using GitHub secrets
+        # Update the error message to provide clear instructions on how to resolve the issue

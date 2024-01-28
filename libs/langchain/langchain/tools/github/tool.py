@@ -3,8 +3,13 @@ This tool allows agents to interact with the pygithub library
 and operate on a GitHub repository.
 
 To use this tool, you must first set as environment variables:
-    GITHUB_API_TOKEN
-    GITHUB_REPOSITORY -> format: {owner}/{repo}
+        GITHUB_API_TOKEN
+        GITHUB_REPOSITORY -> format: {owner}/{repo}
+    
+    def __init__(self, github_api_token: str, github_repository: str, *args, **kwargs):
+        self.github_api_token = github_api_token
+        self.github_repository = github_repository
+        super().__init__(*args, **kwargs)
 
 """
 from typing import Optional
@@ -29,4 +34,9 @@ class GitHubAction(BaseTool):
         run_manager: Optional[CallbackManagerForToolRun] = None,
     ) -> str:
         """Use the GitHub API to run an operation."""
-        return self.api_wrapper.run(self.mode, instructions)
+        try:
+            result = self.api_wrapper.run(self.mode, instructions)
+            return result
+        except Exception as e:
+            print(f'An error occurred: {str(e)}')
+            raise

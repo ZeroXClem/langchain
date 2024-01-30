@@ -13,7 +13,7 @@ from langchain.tools.github.prompt import (
     READ_FILE_PROMPT,
     UPDATE_FILE_PROMPT,
 )
-from langchain.tools.github.tool import GitHubAction
+from langchain.tools.github.tool import GitHubAction, GitHubIssuesLoader
 from langchain.utilities.github import GitHubAPIWrapper
 
 
@@ -30,7 +30,7 @@ class GitHubToolkit(BaseToolkit):
         See [Security](https://python.langchain.com/docs/security) for more information.
     """
 
-    tools: List[BaseTool] = []
+    tools: List[BaseTool] = [GitHubIssuesLoader]
 
     @classmethod
     def from_github_api_wrapper(
@@ -91,4 +91,4 @@ class GitHubToolkit(BaseToolkit):
 
     def get_tools(self) -> List[BaseTool]:
         """Get the tools in the toolkit."""
-        return self.tools
+        return self.tools + [GitHubIssuesLoader()]

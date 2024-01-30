@@ -11,7 +11,16 @@ if TYPE_CHECKING:
     from github.Issue import Issue
 
 
-class GitHubAPIWrapper(BaseModel):
+class GitHubAPIWrapper(BaseModel):  
+    def __init__(self, github, github_repo_instance, github_repository, github_app_id, github_app_private_key, github_branch, github_base_branch):  
+        """Wrapper for GitHub API.""" 
+        self.github = github  #: :meta private:  
+        self.github_repo_instance = github_repo_instance  #: :meta private:  
+        self.github_repository = github_repository  
+        self.github_app_id = github_app_id  
+        self.github_app_private_key = github_app_private_key  
+        self.github_branch = github_branch  
+        self.github_base_branch = github_base_branch  
     """Wrapper for GitHub API."""
 
     github: Any  #: :meta private:

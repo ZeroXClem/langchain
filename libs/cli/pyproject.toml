@@ -1,9 +1,14 @@
 [tool.poetry]
 name = "langchain-cli"
-version = "0.0.16"
+version = "0.0.21"
 description = "CLI for interacting with LangChain"
 authors = ["Erick Friis <erick@langchain.dev>"]
 readme = "README.md"
+repository = "https://github.com/langchain-ai/langchain"
+license = "MIT"
+
+[tool.poetry.urls]
+"Source Code" = "https://github.com/langchain-ai/langchain/tree/master/libs/cli"
 
 [tool.poetry.dependencies]
 python = ">=3.8.1,<4.0"
@@ -23,11 +28,13 @@ pytest = "^7.4.2"
 pytest-watch = "^4.2.0"
 
 [tool.poetry.group.lint.dependencies]
-ruff = "^0.1.3"
+ruff = "^0.1.5"
 
 [tool.poetry.group.test.dependencies]
 
 [tool.poetry.group.typing.dependencies]
+
+[tool.poetry.group.test_integration.dependencies]
 
 [tool.poetry.extras]
 # For langserve
